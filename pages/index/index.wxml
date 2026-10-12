@@ -1,0 +1,65 @@
+<view class="page">
+  <view class="summary">
+    <view class="summary-main">
+      <view class="muted">本月支出</view>
+      <view class="summary-amount">¥{{monthAmount}}</view>
+    </view>
+    <view class="summary-side">
+      <view>
+        <view class="muted">累计</view>
+        <view class="summary-sub">¥{{totalAmount}}</view>
+      </view>
+      <view>
+        <view class="muted">笔数</view>
+        <view class="summary-sub">{{totalCount}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="feedback-entry" hover-class="fb-hover" bindtap="onFeedback">
+    <text class="fb-icon">💬</text>
+    <view class="fb-text">
+      <view class="fb-title">意见反馈</view>
+      <view class="fb-sub">功能建议、问题反馈，一键提交</view>
+    </view>
+    <text class="fb-arrow">›</text>
+  </view>
+
+  <scroll-view wx:if="{{vehicles.length}}" class="chips" scroll-x="{{true}}" enable-flex="{{true}}">
+    <view class="chip {{filterId === null ? 'active' : ''}}" data-id="all" bindtap="onFilter">全部</view>
+    <view class="chip {{filterId === item.id ? 'active' : ''}}" wx:for="{{vehicles}}" wx:key="id" data-id="{{item.id}}" bindtap="onFilter">{{item.name}}</view>
+  </scroll-view>
+
+  <view wx:if="{{loading}}" class="empty">加载中…</view>
+
+  <view wx:elif="{{!vehicles.length}}" class="empty">
+    <view>还没有车辆</view>
+    <view class="muted tap" bindtap="onGoVehicles">先去添加一辆车 →</view>
+  </view>
+
+  <view wx:elif="{{!records.length}}" class="empty">
+    <view>还没有记录</view>
+    <view class="muted">点右下角 + 记一笔</view>
+  </view>
+
+  <view wx:else class="list">
+    <view class="card record-item" wx:for="{{records}}" wx:key="id" data-id="{{item.id}}" bindtap="onTapRecord">
+      <view class="row-between">
+        <view class="row">
+          <view class="dot {{item.isCharge ? 'charge' : 'fuel'}}"></view>
+          <view>
+            <view class="record-title">{{item.typeText}} · {{item.vehicleName}}</view>
+            <view class="muted">{{item.dateText}}<text wx:if="{{item.station}}"> · {{item.station}}</text></view>
+            <view wx:if="{{item.note}}" class="muted">{{item.note}}</view>
+          </view>
+        </view>
+        <view class="record-right">
+          <view class="record-amount">{{item.amountText}}</view>
+          <view class="muted">{{item.quantityText}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="fab" bindtap="onAdd">+</view>
+</view>

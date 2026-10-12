@@ -1,0 +1,149 @@
+.summary {
+  background: linear-gradient(135deg, #2b6cb0, #4299e1);
+  border-radius: 24rpx;
+  padding: 32rpx;
+  color: #ffffff;
+  margin-bottom: 24rpx;
+}
+
+.summary .muted {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.summary-main {
+  margin-bottom: 24rpx;
+}
+
+.summary-amount {
+  font-size: 60rpx;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.summary-side {
+  display: flex;
+  flex-direction: row;
+}
+
+.summary-side > view {
+  flex: 1;
+}
+
+.summary-sub {
+  font-size: 32rpx;
+  margin-top: 6rpx;
+}
+
+.chips {
+  white-space: nowrap;
+  margin-bottom: 20rpx;
+}
+
+.chip {
+  display: inline-block;
+  padding: 12rpx 28rpx;
+  margin-right: 16rpx;
+  background: #ffffff;
+  border-radius: 28rpx;
+  font-size: 26rpx;
+  color: #4b5563;
+}
+
+.chip.active {
+  background: #2b6cb0;
+  color: #ffffff;
+}
+
+.list {
+  padding-bottom: 40rpx;
+}
+
+.record-item:active {
+  background: #f8fafc;
+}
+
+.dot {
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 8rpx;
+  margin-right: 20rpx;
+}
+
+.dot.fuel {
+  background: #dd6b20;
+}
+
+.dot.charge {
+  background: #38a169;
+}
+
+.record-title {
+  font-size: 30rpx;
+  color: #111827;
+  margin-bottom: 6rpx;
+}
+
+.record-right {
+  text-align: right;
+}
+
+.record-amount {
+  font-size: 34rpx;
+  color: #111827;
+  font-weight: 500;
+}
+
+.tap {
+  margin-top: 12rpx;
+  color: #2b6cb0;
+}
+
+.feedback-entry {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 24rpx 28rpx;
+  margin-bottom: 24rpx;
+  border-radius: 24rpx;
+  background: #ffffff;
+  box-shadow: 0 8rpx 24rpx rgba(15, 23, 42, 0.06);
+}
+
+.fb-hover {
+  background: #f8fafc;
+}
+
+.fb-icon {
+  width: 72rpx;
+  height: 72rpx;
+  flex-shrink: 0;
+  margin-right: 20rpx;
+  border-radius: 24rpx;
+  background: #eef4ff;
+  line-height: 72rpx;
+  text-align: center;
+  font-size: 38rpx;
+}
+
+.fb-text {
+  flex: 1;
+  overflow: hidden;
+}
+
+.fb-title {
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #111827;
+}
+
+.fb-sub {
+  margin-top: 6rpx;
+  font-size: 22rpx;
+  color: #9ca3af;
+}
+
+.fb-arrow {
+  font-size: 44rpx;
+  color: #cbd5e1;
+  line-height: 1;
+}

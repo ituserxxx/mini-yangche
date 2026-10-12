@@ -1,0 +1,33 @@
+.section-title {
+  font-size: 34rpx;
+  font-weight: 500;
+  color: #111827;
+  margin: 12rpx 8rpx 20rpx;
+}
+
+.vehicle-item:active {
+  background: #f8fafc;
+}
+
+.color-dot {
+  width: 48rpx;
+  height: 48rpx;
+  flex-shrink: 0;
+  margin-right: 18rpx;
+  border-radius: 24rpx;
+  border: 2rpx solid rgba(15, 23, 42, 0.08);
+}
+
+.vehicle-name {
+  font-size: 32rpx;
+  color: #111827;
+  margin-bottom: 8rpx;
+}
+
+.tag {
+  background: #eef2f7;
+  color: #2b6cb0;
+  font-size: 22rpx;
+  padding: 8rpx 20rpx;
+  border-radius: 24rpx;
+}

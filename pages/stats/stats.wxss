@@ -1,0 +1,216 @@
+/* 页面容器：侧边距为 0，让头图满宽；底部留白给按钮 */
+.page {
+  min-height: 100vh;
+  padding: 0 0 220rpx;
+  background: #f4f6f9;
+}
+
+/* 头图标题（复用 app.wxss 的 .hero / .hero-dot* / .hero-badge / .hero-sub 与主题色） */
+.hero-title {
+  position: relative;
+  color: #ffffff;
+  font-size: 40rpx;
+  font-weight: 600;
+  padding-top: 8rpx;
+}
+
+/* 总支出大数字 */
+.amount-big {
+  font-size: 64rpx;
+  font-weight: 600;
+  color: #111827;
+  text-align: center;
+  margin: 4rpx 0 28rpx;
+}
+
+/* 统计宫格（2~3 个自适应换行） */
+.stat-grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.stat-cell {
+  flex: 1 1 30%;
+  text-align: center;
+  margin-bottom: 18rpx;
+}
+
+.stat-value {
+  font-size: 32rpx;
+  color: #111827;
+  font-weight: 600;
+  margin-bottom: 8rpx;
+}
+
+/* 车辆多选卡片（2 列网格）
+   选中 = 淡绿背景；未选 = 灰背景。不再使用勾选符号，仅靠背景色区分 */
+.veh-wrap {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.veh-pick {
+  position: relative;
+  width: 48%;
+  box-sizing: border-box;
+  padding: 22rpx 20rpx;
+  margin-bottom: 18rpx;
+  border-radius: 20rpx;
+  background: #eef0f3;
+  border: 2rpx solid #d8dde4;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.veh-pick.active {
+  background: #d8f5e6;
+  border-color: #22c55e;
+}
+
+.veh-pick-dot {
+  width: 22rpx;
+  height: 22rpx;
+  border-radius: 11rpx;
+  border: 2rpx solid rgba(15, 23, 42, 0.08);
+  margin-bottom: 12rpx;
+}
+
+.veh-pick-name {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 6rpx;
+  padding-right: 36rpx;
+}
+
+.veh-pick-plate {
+  font-size: 22rpx;
+  color: #6b7280;
+  letter-spacing: 1rpx;
+}
+
+/* 单车时的展示 */
+.single-veh {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.single-veh-text {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #111827;
+}
+
+.mini-btn {
+  padding: 10rpx 28rpx;
+  border-radius: 28rpx;
+  background: #eef2f7;
+  color: #4b5563;
+  font-size: 24rpx;
+}
+
+/* 空状态 */
+.empty-card {
+  text-align: center;
+  padding: 56rpx 28rpx;
+}
+
+.empty-emoji {
+  font-size: 72rpx;
+  line-height: 1;
+}
+
+.empty-title {
+  margin-top: 16rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #111827;
+}
+
+/* ===== 海报弹窗 ===== */
+.poster-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.62);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.poster-sheet {
+  width: 86%;
+  max-height: 88%;
+  background: #ffffff;
+  border-radius: 28rpx;
+  padding: 24rpx;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.poster-sheet-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #111827;
+  text-align: center;
+  margin-bottom: 16rpx;
+}
+
+.poster-scroll {
+  flex: 1;
+  overflow: hidden;
+  min-height: 200rpx;
+}
+
+.poster-big {
+  width: 100%;
+  border-radius: 16rpx;
+}
+
+.poster-actions {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20rpx;
+}
+
+.pa-btn {
+  flex: 1;
+  text-align: center;
+  padding: 22rpx 0;
+  border-radius: 44rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.pa-save {
+  background: #2563eb;
+}
+
+.pa-share {
+  background: linear-gradient(135deg, #fb923c 0%, #ea580c 100%);
+  margin-left: 20rpx;
+}
+
+.poster-close {
+  margin-top: 18rpx;
+  text-align: center;
+  color: #9ca3af;
+  font-size: 26rpx;
+}
+
+/* 离屏画布 */
+.poster-canvas {
+  position: fixed;
+  left: -10000rpx;
+  top: 0;
+  width: 640px;
+  height: 1100px;
+}

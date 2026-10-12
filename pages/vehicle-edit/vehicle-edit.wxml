@@ -1,0 +1,172 @@
+<view class="page theme-{{form.energy_type}}">
+  <!-- 顶部车牌预览：随输入实时变化 -->
+  <view class="hero">
+    <view class="hero-dot hero-dot-a"></view>
+    <view class="hero-dot hero-dot-b"></view>
+    <view class="hero-badge">{{energyLabel}}</view>
+    <view class="hero-main">
+      <view class="plate {{form.energy_type === 'charge' ? 'plate-green' : 'plate-blue'}} {{form.plate ? '' : 'plate-empty'}}">
+        <text class="plate-text">{{form.plate || '粤A·12345'}}</text>
+      </view>
+      <view class="hero-meta">
+        <view class="hero-name">{{form.name || '我的爱车'}}</view>
+        <view class="hero-sub">{{form.brand_model || '未填写品牌车型'}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="content">
+    <!-- 能源类型：可视化三选一 -->
+    <view class="card">
+      <view class="card-head">
+        <text class="card-title">能源类型</text>
+        <text class="card-hint">决定记一笔时的默认口径</text>
+      </view>
+      <view class="energy-grid">
+        <view
+          wx:for="{{energyTypes}}"
+          wx:key="value"
+          class="energy-item {{form.energy_type === item.value ? 'active' : ''}}"
+          hover-class="energy-hover"
+          data-value="{{item.value}}"
+          bindtap="onEnergySelect"
+        >
+          <view class="energy-icon" style="background: {{item.bg}}">{{item.icon}}</view>
+          <text class="energy-label">{{item.label}}</text>
+          <text class="energy-desc">{{item.desc}}</text>
+          <view class="energy-check">✓</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 基础信息 -->
+    <view class="card">
+      <view class="card-head">
+        <text class="card-title">基础信息</text>
+      </view>
+
+      <view class="input-row {{focusKey === 'name' ? 'focus' : ''}}">
+        <view class="ico">🚗</view>
+        <view class="input-body">
+          <view class="input-label">车辆昵称<text class="req">必填</text></view>
+          <input
+            class="input"
+            placeholder="如：通勤车"
+            placeholder-class="ph"
+            value="{{form.name}}"
+            data-key="name"
+            bindinput="onInput"
+            bindfocus="onFocus"
+            bindblur="onBlur"
+            maxlength="20"
+          />
+        </view>
+      </view>
+
+      <view class="input-row {{focusKey === 'plate' ? 'focus' : ''}}">
+        <view class="ico ico-alt">🔖</view>
+        <view class="input-body">
+          <view class="input-label">车牌号<text class="req">必填</text></view>
+          <input
+            class="input"
+            placeholder="如：粤A12345"
+            placeholder-class="ph"
+            value="{{form.plate}}"
+            data-key="plate"
+            bindinput="onInput"
+            bindfocus="onFocus"
+            bindblur="onBlur"
+            maxlength="10"
+          />
+        </view>
+      </view>
+    </view>
+
+    <!-- 补充资料 -->
+    <view class="card">
+      <view class="card-head">
+        <text class="card-title">补充资料</text>
+        <text class="card-hint">选填</text>
+      </view>
+
+      <view class="input-row {{focusKey === 'brand_model' ? 'focus' : ''}}">
+        <view class="ico ico-warm">🏷️</view>
+        <view class="input-body">
+          <view class="input-label">品牌车型</view>
+          <input
+            class="input"
+            placeholder="如：比亚迪 汉EV"
+            placeholder-class="ph"
+            value="{{form.brand_model}}"
+            data-key="brand_model"
+            bindinput="onInput"
+            bindfocus="onFocus"
+            bindblur="onBlur"
+            maxlength="30"
+          />
+        </view>
+      </view>
+
+      <scroll-view class="chips" scroll-x="{{true}}" show-scrollbar="{{false}}">
+        <view
+          wx:for="{{brandChips}}"
+          wx:key="*this"
+          class="chip {{form.brand_model === item ? 'chip-active' : ''}}"
+          hover-class="chip-hover"
+          data-value="{{item}}"
+          bindtap="onBrandChip"
+        >{{item}}</view>
+      </scroll-view>
+
+      <view class="block">
+        <view class="block-label">车身颜色</view>
+        <view class="swatches">
+          <view
+            wx:for="{{colorOptions}}"
+            wx:key="hex"
+            class="swatch {{form.color === item.hex ? 'swatch-active' : ''}}"
+            style="background: {{item.hex}}"
+            data-hex="{{item.hex}}"
+            bindtap="onColorSelect"
+          >
+            <view class="swatch-ring"></view>
+          </view>
+        </view>
+        <input
+          class="input-plain"
+          placeholder="或自定义颜色，如：哑光灰"
+          placeholder-class="ph"
+          value="{{form.color}}"
+          data-key="color"
+          bindinput="onInput"
+          maxlength="20"
+        />
+      </view>
+
+      <view class="block">
+        <view class="block-label">备注</view>
+        <textarea
+          class="textarea"
+          placeholder="写点什么？比如保险到期时间、常用加油站…"
+          placeholder-class="ph"
+          value="{{form.note}}"
+          data-key="note"
+          bindinput="onInput"
+          maxlength="120"
+          auto-height="{{true}}"
+          cursor-spacing="40"
+        />
+      </view>
+    </view>
+
+    <view class="tip">车牌在同一账号内唯一，重复添加会自动更新为最新信息。</view>
+  </view>
+
+  <!-- 底部操作条 -->
+  <view class="footer">
+    <view class="save-btn {{saving ? 'disabled' : ''}}" hover-class="btn-hover" bindtap="onSave">
+      {{saving ? '保存中…' : (isEdit ? '保存修改' : '添加这辆车')}}
+    </view>
+    <view wx:if="{{isEdit}}" class="del-btn" hover-class="btn-hover" bindtap="onDelete">删除这辆车</view>
+  </view>
+</view>

@@ -1,0 +1,10 @@
+{
+  "name": "car-fuel-charge-record",
+  "version": "1.0.0",
+  "private": true,
+  "description": "养车刺客小程序（汽车加油充电记录）",
+  "dependencies": {
+    "@tencent-ai/workbuddy-cloud-sdk": "dev",
+    "qrcode-generator": "^2.0.4"
+  }
+}

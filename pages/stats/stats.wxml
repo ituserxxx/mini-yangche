@@ -1,0 +1,101 @@
+<view class="page theme-{{theme}}">
+  <view class="hero">
+    <view class="hero-dot hero-dot-a"></view>
+    <view class="hero-dot hero-dot-b"></view>
+    <view class="hero-badge">{{themeName}}车</view>
+    <view class="hero-title">统计与海报</view>
+    <view class="hero-sub">{{periodText}} · {{vehicleText || '暂无车辆'}}</view>
+  </view>
+
+  <view class="content">
+    <view wx:if="{{!hasVehicles}}" class="card empty-card">
+      <view class="empty-emoji">🚗</view>
+      <view class="empty-title">还没有车辆</view>
+      <view class="muted" style="margin:8rpx 0 24rpx">先去添加一辆车，才能生成账单海报</view>
+      <view class="btn-primary" bindtap="goVehicles">去添加车辆</view>
+    </view>
+
+    <block wx:else>
+      <view class="card">
+        <view class="card-head">
+          <text class="card-title">总支出</text>
+          <text class="card-hint">{{periodText}}</text>
+        </view>
+        <view class="amount-big">¥{{amountText}}</view>
+        <view class="stat-grid">
+          <view class="stat-cell" wx:for="{{statCells}}" wx:key="label">
+            <view class="stat-value">{{item.value}}</view>
+            <view class="muted">{{item.label}}</view>
+          </view>
+        </view>
+      </view>
+
+      <view wx:if="{{multiSelect}}" class="card">
+        <view class="card-head">
+          <text class="card-title">选择车辆</text>
+          <text class="card-hint">可多选 · 已选 {{selectedCount}} 辆</text>
+        </view>
+        <view class="veh-wrap">
+          <view
+            class="veh-pick {{item.selected ? 'active' : ''}}"
+            wx:for="{{vehicles}}"
+            wx:key="id"
+            data-id="{{item.id}}"
+            bindtap="onToggleVehicle"
+          >
+            <view class="veh-pick-dot" style="background:{{item.colorDot}}"></view>
+            <view class="veh-pick-name">{{item.name}}</view>
+            <view class="veh-pick-plate">{{item.plate}}</view>
+          </view>
+        </view>
+        <view class="row" style="margin-top:18rpx">
+          <view class="mini-btn" bindtap="selectAll">全选</view>
+          <view class="mini-btn" style="margin-left:16rpx" bindtap="selectNone">清空</view>
+        </view>
+      </view>
+
+      <view wx:else class="card">
+        <view class="card-head"><text class="card-title">车辆</text></view>
+        <view class="single-veh">
+          <view class="veh-pick-dot" style="background:{{singleColorDot}}"></view>
+          <text class="single-veh-text">{{singleName}} · {{singlePlate}}</text>
+        </view>
+      </view>
+
+      <view class="card">
+        <view class="card-head"><text class="card-title">时间范围</text></view>
+        <view class="segment">
+          <view
+            class="segment-item {{rangeIndex === index ? 'active' : ''}}"
+            wx:for="{{ranges}}"
+            wx:key="*this"
+            data-index="{{index}}"
+            bindtap="onRangeChange"
+          >{{item}}</view>
+        </view>
+      </view>
+
+      <view class="btn-primary {{generating ? 'disabled' : ''}}" bindtap="onGeneratePoster">
+        {{generating ? '生成中…' : '生成分享海报'}}
+      </view>
+      <view class="tip">海报仅汇总已选车辆，数据仅本人可见，可保存到相册或分享朋友圈。</view>
+    </block>
+  </view>
+
+  <!-- 海报弹窗 -->
+  <view wx:if="{{posterVisible}}" class="poster-mask" bindtap="closePoster">
+    <view class="poster-sheet" catchtap="noop">
+      <view class="poster-sheet-title">分享你的用车账单</view>
+      <scroll-view scroll-y="{{true}}" class="poster-scroll">
+        <image class="poster-big" src="{{posterPath}}" mode="widthFix" bindtap="onPreviewPoster" />
+      </scroll-view>
+      <view class="poster-actions">
+        <view class="pa-btn pa-save" bindtap="onSavePoster">保存到相册</view>
+        <view class="pa-btn pa-share" bindtap="onSharePoster">分享朋友圈</view>
+      </view>
+      <view class="poster-close" bindtap="closePoster">关闭</view>
+    </view>
+  </view>
+
+  <canvas type="2d" id="posterCanvas" class="poster-canvas"></canvas>
+</view>

@@ -1,0 +1,5 @@
+[
+  { "LicensePlate": "标识并区分你添加的车辆" },
+  { "Address": "记录加油充电发生的地点" },
+  { "AlbumWriteOnly": "保存账单海报到相册" }
+]

@@ -1,0 +1,39 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/record/record",
+    "pages/vehicles/vehicles",
+    "pages/vehicle-edit/vehicle-edit",
+    "pages/stats/stats",
+    "pages/feedback/feedback"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#2b6cb0",
+    "navigationBarTitleText": "养车刺客",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#f4f6f9"
+  },
+  "tabBar": {
+    "color": "#8a8f99",
+    "selectedColor": "#2b6cb0",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "记录"
+      },
+      {
+        "pagePath": "pages/vehicles/vehicles",
+        "text": "车辆"
+      },
+      {
+        "pagePath": "pages/stats/stats",
+        "text": "统计"
+      }
+    ]
+  },
+  "lazyCodeLoading": "requiredComponents",
+  "sitemapLocation": "sitemap.json"
+}

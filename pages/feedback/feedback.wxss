@@ -1,0 +1,15 @@
+/* 页面容器（覆盖全局 .page 的 padding） */
+.page {
+  min-height: 100vh;
+  padding: 0 0 300rpx;
+  background: #f4f6f9;
+}
+
+.hero-title {
+  position: relative;
+  margin-top: 20rpx;
+  color: #ffffff;
+  font-size: 44rpx;
+  font-weight: 600;
+  line-height: 1.2;
+}
