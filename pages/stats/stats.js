@@ -310,8 +310,22 @@ Page({
         if (msg.indexOf('auth deny') >= 0 || msg.indexOf('authorize') >= 0) {
           wx.showModal({
             title: '需要相册权限',
-            content: '请在设置中允许保存到相册后重试',
-            showCancel: false,
+            content: '保存海报需要你允许使用相册，是否去设置中开启？',
+            confirmText: '去设置',
+            cancelText: '暂不保存',
+            success: (res) => {
+              if (!res.confirm) return
+              wx.openSetting({
+                success: (settingRes) => {
+                  if (settingRes.authSetting['scope.writePhotosAlbum']) {
+                    this.onSavePoster()
+                  } else {
+                    wx.showToast({ title: '未获得相册权限', icon: 'none' })
+                  }
+                },
+                fail: () => wx.showToast({ title: '打开设置失败', icon: 'none' }),
+              })
+            },
           })
           return
         }
