@@ -1,7 +1,8 @@
 [
+  { "AlbumWriteOnly": "保存账单海报到你的相册" },
   { "LicensePlate": "标识并区分你添加的车辆" },
   { "Address": "记录加油充电发生的地点" },
-  { "AlbumWriteOnly": "保存账单海报到相册" },
+  { "EXUserPublishContent": "收集并处理你的反馈内容" },
   { "PhoneNumber": "回复你的意见反馈" },
   { "Email": "回复你的意见反馈" }
 ]
